@@ -34,8 +34,8 @@ shinyUI(pageWithSidebar(
 		helpText("In which month will you make your first payment?"),
 		
 		## Frquency of interest compounding
-		selectInput("compoundfreq", "How frequently are interests compounded? (in months)", choices=c(1, 2, 3, 4, 6, 12)),
-		helpText("That is, how frequently interests are calculated. Keeping the same loan duration but with less frequent compounding of interests will increase the total amount of interests payed. That's because your loan's principal (for interest calculation purposes) will change less frequently.")
+		numericInput("compoundfreq", "How frequently are interests compounded? (in months)", value=1, min=1, max=12, step=1),
+		helpText("That is, how frequently interests are calculated. Banks will normally compound the interest at the same frequency that payments are made. Only consider a more frequent interest compounding than payment frequency if the loaner is willing to give you such a deal (for example, to reduce costs from commissions on currency trades or wire transfers).")
 		
 		
 		
@@ -68,7 +68,7 @@ shinyUI(pageWithSidebar(
 				tags$hr(),
 				HTML("Powered by <a href='http://www.rstudio.com/shiny/'>Shiny</a> and hosted by <a href='http://www.rstudio.com/'>RStudio</a>."),
 				HTML("Developed by <a href='http://bit.ly/LColladoTorres'>L. Collado Torres</a>."),
-				HTML("Version 0.0.1. Code hosted by <a href='https://github.com/lcolladotor/mortgage'>GitHub</a>."),
+				HTML("Version 0.0.2. Code hosted by <a href='https://github.com/lcolladotor/mortgage'>GitHub</a>."),
 				tags$hr()
 				
 			)

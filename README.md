@@ -14,4 +14,4 @@ Please document the problem and submit it in the [issues](https://github.com/lco
 * Based on [Mortgage calculator](http://en.wikipedia.org/wiki/Mortgage_calculator) and inspired by [Mortgage Calculator (and Amortization Charts) with R](http://www.r-chart.com/2010/11/mortgage-calculator-and-amortization.html) and [Mortgage Refinance Calculator](http://biostatmatt.com/archives/1908)
 * Powered by [Shiny](http://www.rstudio.com/shiny/) and hosted by [RStudio](http://www.rstudio.com/).
 * Developed by [L. Collado Torres](http://bit.ly/LColladoTorres).
-* Version 0.0.1. Code hosted by [GitHub](https://github.com/lcolladotor/mortgage).
+* Version 0.0.2. Code hosted by [GitHub](https://github.com/lcolladotor/mortgage).

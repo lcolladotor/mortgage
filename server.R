@@ -24,14 +24,21 @@ amort <- function(principal, interest, duration, payfreq, firstpay, compoundfreq
 	pay <- pay(principal, interest, duration, payfreq, firstpay, compoundfreq)
 	data <- data.frame(month = seq(0, duration * 12))
 	data$payment <- 0
-	data$payment[ (data$month - firstpay) >= 0 & (data$month - 1) %% payfreq == 0 ] <- pay$payment
+	data$payment[ (data$month - firstpay) >= 0 & (data$month - firstpay) %% payfreq == 0 ] <- pay$payment
+	i <- which(data$payment != 0)
+	i <- i[length(i)]
+	data$payment[ i ] <- 0
+	data$payment[ i ] <- pay$payment * (duration - (firstpay - 1) / 12) * 12 / payfreq - sum(data$payment)
 	data$totalPayed <- cumsum(data$payment)
 	
 	data$principal <- NA
 	data$principal[1] <- principal
-	idx <- data$month - firstpay >=0 & (data$month - firstpay) %% compoundfreq == 0
+	idx <- (data$month - firstpay) >=0 & (data$month - firstpay) %% compoundfreq == 0
 	idx.pr <- which(idx)[-length(idx)] + compoundfreq - 1
-	idx.pr <- idx.pr[-which(idx.pr > max(data$month))]
+	if(any(idx.pr > max(data$month))) {
+		idx.pr <- idx.pr[-which(idx.pr > max(data$month))]
+	}	
+
 	if(firstpay > 1) {
 		data$principal[firstpay] <- pay$principal
 	}
@@ -46,6 +53,11 @@ shinyServer(function(input, output, session) {
 	## Update max payment frequency
 	observe({
 		updateNumericInput(session, "firstpay", "Month of the first payment", 1, min=0, max=input$duration * 12, step=1)
+	})
+	
+	## Update interest compouding options
+	observe({
+		updateNumericInput(session, "compoundfreq", "How frequently are interests compounded? (in months)", input$payfreq, min=1, max=input$payfreq, step=1)
 	})
 	
 	## Display payment
