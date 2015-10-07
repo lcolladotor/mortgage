@@ -3,7 +3,7 @@ Simple Mortgage Calculator shiny application
 
 Beyond the usual simple calculators, you can also specify how frequently you will make payments, when you will start, and how frequently the interests are compounded. 
 
-You can view the live app [here](http://glimmer.rstudio.com/lcolladotor/mortgage/).
+You can view the live app [here](https://lcolladotor.shinyapps.io/mortgage2/).
 
 ## Found a bug?
 
